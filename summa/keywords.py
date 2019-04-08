@@ -100,7 +100,8 @@ def _extract_tokens(lemmas, scores, ratio, words):
     # If no "words" option is selected, the number of sentences is
     # reduced by the provided ratio, else, the ratio is ignored.
     length = len(lemmas) * ratio if words is None else words
-    return [(scores[lemmas[i]], lemmas[i],) for i in range(int(length))]
+    max_len = len(scores) if length > len(scores) else length
+    return [(scores[lemmas[i]], lemmas[i],) for i in range(int(max_len))]
 
 
 def _lemmas_to_words(tokens):
